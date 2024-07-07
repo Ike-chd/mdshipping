@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>View Cart</title>
+        <link rel="stylesheet" href="products.css">
+        <style>
+
+            table {
+                width: 100%;
+                border-collapse: collapse;
+                margin-bottom: 20px;
+            }
+            table, th, td {
+                border: 1px solid #ddd;
+            }
+            th, td {
+                padding: 8px;
+                text-align: left;
+            }
+            th {
+                background-color: #f2f2f2;
+            }
+            .cart-button {
+                display: inline-block;
+                padding: 10px 20px;
+                margin: 5px;
+                background-color: #007bff;
+                color: #fff;
+                border: none;
+                border-radius: 5px;
+                cursor: pointer;
+                transition: background-color 0.3s ease;
+            }
+            .cart-button:hover {
+                background-color: #0056b3;
+            }
+        </style>
+    </head>
+    <body>
+        <header>
+            <div class="container">
+                <div class="logo">
+                    <img src="MD Shippng.png" alt="MD Shipping Logo">
+                </div>
+                <nav>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li class="active"><a href="products.html">Products</a></li>
+                    </ul>
+                </nav>
+                <a href="#" onclick="showCartPopup()" class="cart-button">
+                    <span class="cart-icon-container">
+                        <i class="fas fa-shopping-cart cart-icon"></i>
+                        <span class="cart-count" id="cart-count">0</span>
+                    </span>
+                    Cart
+                </a>
+            </div>
+        </header>
+
+        <div class="container">
+            <h1>Your Cart</h1>
+            <table id="cart-table">
+                <thead>
+                    <tr>
+                        <th>Product</th>
+                        <th>Price</th>
+                        <th>Quantity</th>
+                        <th>Total</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Cart items will be populated here by JavaScript -->
+                </tbody>
+            </table>
+            <p id="cart-total">Total: $0.00</p>
+            <button class="cart-button" onclick="clearCart()">Clear Cart</button>
+            <button class="cart-button" onclick="proceedToCheckout()">Proceed to Checkout</button>
+        </div>
+
+        <footer>
+            <div class="container">
+                <p>&copy; 2024 MD Shipping. All rights reserved.</p>
+            </div>
+        </footer>
+
+        <script src="pv.js"></script>
+    </body>
+</html>
