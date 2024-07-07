@@ -6,6 +6,143 @@
         <title>MD Shipping - Product View</title>
         <link rel="stylesheet" href="products.css">
         <script defer src="pv.js"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+        <style>
+            .product-view {
+                padding-top: 80px; /* Adjust padding to account for fixed header */
+                text-align: center;
+            }
+
+            .product-view .container {
+                max-width: 800px;
+                margin: 0 auto;
+            }
+
+            .product-view h1 {
+                font-size: 2.5em;
+                margin-bottom: 20px;
+            }
+
+            .product-view img {
+                max-width: 100%;
+                height: auto;
+                margin-bottom: 20px;
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            }
+
+            footer {
+                background: #333;
+                color: #fff;
+                text-align: center;
+                padding: 10px 0;
+                position: fixed;
+                bottom: 0;
+                width: 100%;
+            }
+
+            footer .container {
+                max-width: 1200px;
+                margin: 0 auto;
+                padding: 0 20px;
+            }
+
+            /* Cart button styles */
+            .cart-button {
+                display: flex;
+                align-items: center;
+                gap: 10px;
+                padding: 10px;
+                background-color: #007bff;
+                color: #fff;
+                border: none;
+                border-radius: 5px;
+                cursor: pointer;
+                transition: background-color 0.3s ease;
+            }
+            
+            .buttons {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+            }
+
+            .cart-modal .cart-button {
+                width: 45%;
+                display: inline;
+            }
+
+            .cart-button:hover {
+                background-color: #0056b3;
+            }
+
+            .cart-icon {
+                font-size: 1.2em;
+            }
+
+            /* Modal styles */
+            .cart-modal {
+                display: none;
+                position: fixed;
+                z-index: 1001;
+                left: 0;
+                top: 0;
+                width: 100%;
+                height: 100%;
+                overflow: auto;
+                background-color: rgba(0, 0, 0, 0.5);
+            }
+
+            .cart-modal-content {
+                background-color: #fff;
+                margin: 15% auto;
+                padding: 20px;
+                border: 1px solid #888;
+                width: 80%;
+                max-width: 500px;
+                border-radius: 10px;
+                text-align: center;
+            }
+
+            .cart-modal-content h2 {
+                margin-top: 0;
+            }
+
+            .cart-modal-content ul {
+                list-style-type: none;
+                padding: 0;
+            }
+
+            .cart-modal-content ul li {
+                margin: 10px 0;
+            }
+
+            .cart-modal-content .close-btn {
+                background: #007bff;
+                color: #fff;
+                border: none;
+                padding: 10px;
+                border-radius: 5px;
+                cursor: pointer;
+                display: block;
+                margin: 20px auto 0;
+                width: 100%;
+                text-align: center;
+            }
+
+            .close {
+                color: #aaa;
+                float: right;
+                font-size: 28px;
+                font-weight: bold;
+            }
+
+            .close:hover,
+            .close:focus {
+                color: black;
+                text-decoration: none;
+                cursor: pointer;
+            }
+        </style>
     </head>
     <body>
         <header>
@@ -19,16 +156,41 @@
                         <li class="active"><a href="products.html">Products</a></li>
                     </ul>
                 </nav>
+                <!-- Cart icon -->
+                <a href="#" onclick="showCartPopup()" class="cart-button">
+                    <span class="cart-icon-container">
+                        <i class="fas fa-shopping-cart cart-icon"></i> <!-- Font Awesome cart icon -->
+                        <span class="cart-count" id="cart-count">0</span>
+                    </span>
+                    Cart
+                </a>
             </div>
         </header>
+
         <section class="product-view">
             <div class="container">
                 <h1 id="product-name">Product Name</h1>
                 <img id="product-image" src="" alt="Product Image">
                 <p id="product-description">Product Description</p>
                 <p id="product-price">Price: $XX.XX</p>
+                <button onclick="addToCart()" class="cart-button">
+                    Add to Cart
+                </button>
             </div>
         </section>
+
+        <div id="cart-modal" class="cart-modal">
+            <div class="cart-modal-content">
+                <span class="close" onclick="closeCartPopup()">&times;</span>
+                <h2>Cart Items</h2>
+                <ul id="cart-items-list"></ul>
+                <div class="buttons">
+                    <button class="cart-button" onclick="clearCart()">Clear Cart</button>
+                    <button class="cart-button" onclick="proceedToViewCart()">View Cart</button>
+                </div>
+            </div>
+        </div>
+
         <footer>
             <div class="container">
                 <p>&copy; 2024 MD Shipping. All rights reserved.</p>
